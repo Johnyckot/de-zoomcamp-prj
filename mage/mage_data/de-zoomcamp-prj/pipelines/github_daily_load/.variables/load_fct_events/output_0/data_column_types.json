@@ -1,0 +1,1 @@
+{"event_id": "Decimal", "event_ts": "datetime64[ns, UTC]", "actor_id": "Decimal", "org_id": "Decimal", "repo_id": "Decimal", "public": "boolean", "type": "str"}
