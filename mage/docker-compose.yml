@@ -20,8 +20,7 @@ services:
     ports:
       - 6789:6789
     volumes:
-      - .:/home/src/
-      # - ~/keys/mage-runner-creds.json:/home/src/keys/personal-gcp.json
+      - .:/home/src/      
       - ~/keys:/home/src/keys/
     restart: on-failure:5
   postgres:

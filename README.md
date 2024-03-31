@@ -47,8 +47,9 @@ Data Mart area data model:
 ![image](images/DM_ERD.png)
 
 Tables are created in BQ as Standart tables. 
-Dimension tables are not partitioned, but clustered on Id column.
-Fact tables are Partitioned by Event Day.
+Dimension tables are not partitioned since tables sizes should be relatively small, but clustered on Id column, since it has high cardinality will be frequently used in Upserts.
+
+Fact tables are Partitioned by Event Day, so that only one partition should be reloaded by the ppelinedaily run. 
 
 ### Pipeline Processing steps
 
