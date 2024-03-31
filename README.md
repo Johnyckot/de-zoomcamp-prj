@@ -52,7 +52,7 @@ Fact tables are Partitioned by Event Day.
 
 ### Pipeline Processing steps
 
-![image](images\Pipeline.png)
+![image](images/Pipeline.png)
 
  - gh_get_data: download raw archived json files for a given day;
  - gh_load_files_to_gcs: uploads raw files to GCS Raw Area folder for a given day;
