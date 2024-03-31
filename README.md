@@ -100,8 +100,6 @@ Fact tables are Partitioned by Event Day.
     3. DataProc Cluster (1 Driver + 2 Executors of _e2-standard-4_ VM);
     4. Service Account with roles _storage.admin, bigquery.admin, dataproc.admin_. This SA will be userd by Mage to run jobs on those services.
 
-- Manual step. Copy the file _etl/githunb_transform_raw_stage.py_ to any folder in GCS bucket. 
-
 ### Mage instance local deployment
  Mage instance is deployed locally (via Docker).
  - Open _mage_ folder of the project. 

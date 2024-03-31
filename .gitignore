@@ -1,4 +1,4 @@
 *.env
 *.json.gz
 *.parquet
-mage/mage_data/de-zoomcamp-prj/**
+mage/mage_data/de-zoomcamp-prj/*

@@ -26,13 +26,13 @@ blocks:
   language: python
   name: gh_load_files_to_gcs
   retry_config: null
-  status: executed
+  status: updated
   timeout: null
   type: data_exporter
   upstream_blocks:
   - gh_get_data
   uuid: gh_load_files_to_gcs
-- all_upstream_blocks_executed: true
+- all_upstream_blocks_executed: false
   color: purple
   configuration: {}
   downstream_blocks:

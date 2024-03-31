@@ -117,4 +117,3 @@ df_events\
     .coalesce(2)\
     .write.mode('overwrite')\
     .parquet(f'{output_path}/events/{partition_path}')
-

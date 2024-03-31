@@ -55,10 +55,7 @@ def export_data(data, *args, **kwargs):
             print(f"Uploaded {blob_path} to GCS.")
 
     # Cleanup output dir
-    shutil.rmtree(input_dir)
-    
-
-    
+    shutil.rmtree(input_dir)  
      
 
 

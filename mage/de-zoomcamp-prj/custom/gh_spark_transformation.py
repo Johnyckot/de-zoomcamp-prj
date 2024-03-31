@@ -32,17 +32,7 @@ def load_data(*args, **kwargs):
     import time
     import os
     from datetime import timedelta
-
-    # os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "/home/src/keys/mage-runner-creds.json"
-
-    # input_path = 'gs://de-zoomcamp-shamdzmi-bucket/data/raw/2024-03-27/*.json.gz'
-    # output_path = 'gs://de-zoomcamp-shamdzmi-bucket/data/stage/2024-03-27/'
-
-    # gs://de-zoomcamp-shamdzmi-bucket/Code/githunb_transform_raw_stage.py
-    # --input_path=gs://de-zoomcamp-shamdzmi-bucket/data/raw/2024-03-27/*.json.gz
-    # --output_path=gs://de-zoomcamp-shamdzmi-bucket/data/stage/2024-03-27/
-
-
+    from google.cloud import storage 
  
 
     # Define your cluster details
@@ -53,8 +43,16 @@ def load_data(*args, **kwargs):
     pyspark_file = kwargs['p_pyspark_file']
     gcs_bucket_name = kwargs['p_gcs_bucket_name']
     stage_path = kwargs['p_gcs_stage_path']
-    raw_path = kwargs['p_gcs_raw_path']    
+    raw_path = kwargs['p_gcs_raw_path']  
     
+
+    # upload latest version of pyspark file for DataProc job into GCS
+    local_pyspark_file='de-zoomcamp-prj/pyspark_etl/githunb_transform_raw_stage.py'
+    client = storage.Client()
+    bucket = client.bucket(gcs_bucket_name)
+    blob = bucket.blob(pyspark_file.replace(f'gs://{gcs_bucket_name}/',''))
+    blob.upload_from_filename(local_pyspark_file)
+        
 
     #by default loading date is yesterday
     load_date =(kwargs['execution_date'] - timedelta(days=1) ) \
