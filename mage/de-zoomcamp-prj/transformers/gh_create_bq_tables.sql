@@ -96,6 +96,29 @@ OPTIONS (
 
 -- CREATE FACT TABLES (BQ Standart tables)
 
+-- Daily aggregated events fact table (joined with dimensions)
+-- DROP TABLE IF EXISTS de_zoomcamp_dataset.fct_events_dd ;
+CREATE TABLE IF NOT EXISTS de_zoomcamp_dataset.fct_events_dd  (  
+  event_date  DATE OPTIONS (description = 'Event date'),
+  actor_login STRING OPTIONS (description = 'actor url'),
+  actor_url STRING OPTIONS (description = 'actor url'),
+  org_login STRING OPTIONS (description = 'Org login'),
+  org_url STRING OPTIONS (description = 'Org url'),
+  repo_name STRING OPTIONS (description = 'Repo name'),
+  repo_url STRING OPTIONS (description = 'Repo url'),
+  public BOOL OPTIONS (description = 'Public flag'),
+  event_type STRING OPTIONS (description = 'Event type'),
+  count NUMERIC(20,0) OPTIONS (description = 'Count events')
+)
+PARTITION BY
+  event_date  
+OPTIONS (    
+    description = 'Events fact table aggregated on daily level'
+)
+;
+
+
+-- Granular events fact table
 -- DROP TABLE IF EXISTS de_zoomcamp_dataset.fct_events
 CREATE TABLE IF NOT EXISTS de_zoomcamp_dataset.fct_events  (
   event_id NUMERIC(20,0) OPTIONS (description = 'Event ID'),
@@ -114,3 +137,4 @@ OPTIONS (
     description = 'Events fact table'
 )
 ;
+

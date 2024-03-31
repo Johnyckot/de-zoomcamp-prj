@@ -1,6 +1,9 @@
 --  Delete partition for load date
-WITH cte_load_date as 
-( -- get load date
+ DELETE FROM 
+    de_zoomcamp_dataset.fct_events  t  
+ WHERE 
+    TIMESTAMP_TRUNC(event_ts, DAY) IN 
+    (
     SELECT 
         CAST(load_dt as TIMESTAMP) AS l_ts
     FROM
@@ -13,12 +16,7 @@ WITH cte_load_date as
                 ELSE CAST('{{ variables("p_load_date") }}' AS DATE)
             END
         AS load_dt
-    )
-)  
- DELETE FROM 
-    de_zoomcamp_dataset.fct_events  t  
- WHERE 
-    TIMESTAMP_TRUNC(event_ts, DAY) IN  (SELECT l_ts FROM cte_load_date);
+    ));
 
 
 
